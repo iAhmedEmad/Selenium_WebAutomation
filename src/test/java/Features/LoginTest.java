@@ -1,9 +1,16 @@
 package Features;
 
 import Pages.HomePage;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestConfigurations {
+
+    @BeforeClass
+    public void prepareData(){
+        // I need a json reader to read the json file, then access the keys inside
+    }
 
     @Test(description = "TC2: Login User with correct email and password")
     public void loginWithCorrectCredentials(){
