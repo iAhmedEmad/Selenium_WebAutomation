@@ -18,9 +18,9 @@ public class AccountCreatedSuccessfullyPage {
     private final By accountCreatedText = By.xpath("//b");
     private final By continueAfterAccountCreated = By.xpath("(//a[@href='/'])[3]");
     // Actions
-    public Menu clickContinue() {
+    public Dashboard clickContinue() {
         driver.findElement(continueAfterAccountCreated).click();
-        return new Menu(driver,softAssert);
+        return new Dashboard(driver,softAssert);
     }
     public void navigate(String url){
         driver.navigate().to(url);

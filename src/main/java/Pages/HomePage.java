@@ -21,9 +21,9 @@ public class HomePage {
         driver.navigate().to(url);
     }
     // Validations
-    public Menu assertOnPageTitle(String expextedString) {
+    public Dashboard assertOnPageTitle(String expextedString) {
         softAssert.assertEquals(driver.getTitle().trim(), expextedString);
-        return new Menu(driver,softAssert);
+        return new Dashboard(driver,softAssert);
     }
 
 }

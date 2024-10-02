@@ -4,13 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 
-import java.net.URL;
-
-public class Menu {
+public class Dashboard {
     private WebDriver driver;
     private SoftAssert softAssert;
 
-    public Menu(WebDriver driver, SoftAssert softAssert) {
+    public Dashboard(WebDriver driver, SoftAssert softAssert) {
         this.driver = driver;
         this.softAssert = softAssert;
     }
@@ -18,22 +16,22 @@ public class Menu {
     ////////////////// Locators \\\\\\\\\\\\\\\\\
     private final By loginButton = By.xpath("//a[@href='/login']");
     private final By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
-    private final By successfulLoginText = By.xpath("(//ul[@class='nav navbar-nav']//a)[10]");
+    private final By successfulLoginText = By.xpath("(//ul[@class='nav navbar-nav']//a)[10]/b");
 
     ///////////////// Actions \\\\\\\\\\\\\\\\\\\\\
-    public SignUpPage clickSignupAndLoginButton() {
+    public SignUpAndLoginPage clickSignupAndLoginButton() {
         driver.findElement(loginButton).click();
-        return new SignUpPage(driver,softAssert);
+        return new SignUpAndLoginPage(driver,softAssert);
     }
-    public AccountDeletedPage deleteAccount() {
+    public AccountDeletedPage clickDeleteAccountButton() {
         driver.findElement(deleteAccountButton).click();
         return new AccountDeletedPage(driver,softAssert);
     }
 
     ///////////////// Validations \\\\\\\\\\\\\\\\\\\
-    public Menu assertOnLoggedInAsdWord(String expextedString) {
+    public Dashboard assertOnLoggedInAsdWord(String expextedString) {
         softAssert.assertEquals(driver.findElement(successfulLoginText).getText(), expextedString);
-        return new Menu(driver,softAssert);
+        return new Dashboard(driver,softAssert);
     }
 
 }
