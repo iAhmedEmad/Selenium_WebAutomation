@@ -1,4 +1,4 @@
-package Verifications;
+package Features;
 
 import Utils.DriverFactory;
 import org.openqa.selenium.WebDriver;

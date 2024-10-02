@@ -19,6 +19,7 @@ public class SignUpAndLoginPage {
     private final By newUserEmail = By.xpath("(//input[@type = 'email'])[2]");
     private final By newUserSignupText = By.xpath("//div[@class='signup-form']/h2");
     private final By loginToYourAccountText = By.xpath("//div[@class='login-form']/h2");
+    private final By loginErrorMsg = By.xpath("//p[@style='color: red;']");
     private final By signupButton = By.xpath("(//button[@type='submit'])[2]");
     private final By emailTextField = By.xpath("(//input[@type='email'])[1]");
     private final By passwordTextField = By.xpath("(//input[@type='password'])[1]");
@@ -35,11 +36,17 @@ public class SignUpAndLoginPage {
     public void navigate(String url){
         driver.navigate().to(url);
     }
-    public Dashboard login(String userName, String password){
+    public Dashboard loginWithValidCredintials(String userName, String password){
         driver.findElement(emailTextField).sendKeys(userName);
         driver.findElement(passwordTextField).sendKeys(password);
         driver.findElement(loginButton).click();
         return new Dashboard(driver,softAssert);
+    }
+    public SignUpAndLoginPage loginWithInvalidCredintials(String userName, String password){
+        driver.findElement(emailTextField).sendKeys(userName);
+        driver.findElement(passwordTextField).sendKeys(password);
+        driver.findElement(loginButton).click();
+        return this;
     }
 
     // Validations
@@ -49,6 +56,11 @@ public class SignUpAndLoginPage {
     }
     public SignUpAndLoginPage assertOnLoginToYourAccountWord(String expextedString) {
         softAssert.assertEquals(driver.findElement(loginToYourAccountText).getText(), expextedString);
+//        assert driver.findElement(By.id("")).isDisplayed();
+        return this;
+    }
+    public SignUpAndLoginPage assertOnLoginErrorMsg(String expextedString) {
+        softAssert.assertEquals(driver.findElement(loginErrorMsg).getText(), expextedString);
 //        assert driver.findElement(By.id("")).isDisplayed();
         return this;
     }
