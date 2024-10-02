@@ -9,16 +9,21 @@ import org.testng.asserts.SoftAssert;
 public class TestConfigurations {
      WebDriver driver;
      SoftAssert sa;
+
+
     @BeforeMethod
     public void setUp() {
         driver = DriverFactory.getDriver("Chrome",true);
         sa = new SoftAssert();
         driver.navigate().to("https://automationexercise.com/");
-        driver.manage().window().maximize();
+        System.out.println("before method");
     }
+
+
     @AfterMethod
     public void tearDown() {
-        sa.assertAll();
         driver.quit();
+        sa.assertAll();
+        System.out.println("after method");
     }
 }

@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 
-public class SignUpPage {
+public class SignUpAndLoginPage {
     private WebDriver driver;
     private SoftAssert softAssert;
     private String url = "https://automationexercise.com/login";
 
     // Constructor
-    public SignUpPage(WebDriver driver, SoftAssert softAssert) {
+    public SignUpAndLoginPage(WebDriver driver, SoftAssert softAssert) {
         this.driver = driver;
         this.softAssert = softAssert;
     }
@@ -18,10 +18,14 @@ public class SignUpPage {
     private final By newUserName = By.xpath("//input[@type = 'text']");
     private final By newUserEmail = By.xpath("(//input[@type = 'email'])[2]");
     private final By newUserSignupText = By.xpath("//div[@class='signup-form']/h2");
+    private final By loginToYourAccountText = By.xpath("//div[@class='login-form']/h2");
     private final By signupButton = By.xpath("(//button[@type='submit'])[2]");
+    private final By emailTextField = By.xpath("(//input[@type='email'])[1]");
+    private final By passwordTextField = By.xpath("(//input[@type='password'])[1]");
+    private final By loginButton = By.xpath("//button[@data-qa='login-button']");
 
     // Actions
-    public CreateAccountPage newUserSignup(String name) {
+    public CreateAccountPage newUserSignUp(String name) {
         driver.findElement(newUserName).sendKeys(name);
         String currentDate = String.valueOf(System.currentTimeMillis());
         driver.findElement(newUserEmail).sendKeys(name + currentDate + "@test.com");
@@ -31,10 +35,21 @@ public class SignUpPage {
     public void navigate(String url){
         driver.navigate().to(url);
     }
+    public Dashboard login(String userName, String password){
+        driver.findElement(emailTextField).sendKeys(userName);
+        driver.findElement(passwordTextField).sendKeys(password);
+        driver.findElement(loginButton).click();
+        return new Dashboard(driver,softAssert);
+    }
 
     // Validations
-    public SignUpPage assertOnNewUserSignupWord(String expextedString) {
+    public SignUpAndLoginPage assertOnNewUserSignupWord(String expextedString) {
         softAssert.assertEquals(driver.findElement(newUserSignupText).getText(), expextedString);
+        return this;
+    }
+    public SignUpAndLoginPage assertOnLoginToYourAccountWord(String expextedString) {
+        softAssert.assertEquals(driver.findElement(loginToYourAccountText).getText(), expextedString);
+//        assert driver.findElement(By.id("")).isDisplayed();
         return this;
     }
 
