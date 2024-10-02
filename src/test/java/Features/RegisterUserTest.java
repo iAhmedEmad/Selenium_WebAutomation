@@ -2,10 +2,13 @@ package Features;
 
 import Base.TestConfigurations;
 import Pages.*;
+import Utils.Listeners.CustomListeners;
 import Utils.JsonFileManager;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(CustomListeners.class)
 public class RegisterUserTest extends TestConfigurations {
     JsonFileManager CLs;
     JsonFileManager newUserData;
@@ -63,6 +66,5 @@ public class RegisterUserTest extends TestConfigurations {
                 assertOnLoggedInAsdWord(firstName).
                 clickDeleteAccountButton().
                 assertOnAccountDeleted(accountDeletedMsg);
-        System.out.println("Test 1");
     }
 }

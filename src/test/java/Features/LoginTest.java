@@ -2,10 +2,13 @@ package Features;
 
 import Base.TestConfigurations;
 import Pages.HomePage;
+import Utils.Listeners.CustomListeners;
 import Utils.JsonFileManager;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(CustomListeners.class)
 public class LoginTest extends TestConfigurations {
 
     JsonFileManager loinData;
@@ -46,7 +49,6 @@ public class LoginTest extends TestConfigurations {
                 .assertOnLoginToYourAccountWord(loginToYourAccountWord)
                 .loginWithValidCredintials(validEmail,validPassword)
                 .assertOnLoggedInAsdWord(userName);
-        System.out.println("Test 2");
     }
     @Test(description = "TC3: Login User with incorrect email and password")
     public void loginWithInCorrectCredentials(){
@@ -56,6 +58,5 @@ public class LoginTest extends TestConfigurations {
                 .assertOnLoginToYourAccountWord(loginToYourAccountWord)
                 .loginWithInvalidCredintials(invalidEmail,invalidPassword)
                 .assertOnLoginErrorMsg(loginErrorMsg);
-        System.out.println("Test 3");
     }
 }
