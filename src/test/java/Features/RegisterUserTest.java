@@ -1,31 +1,68 @@
 package Features;
 
+import Base.TestConfigurations;
 import Pages.*;
+import Utils.JsonFileManager;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class RegisterUserTest extends TestConfigurations {
+    JsonFileManager CLs;
+    JsonFileManager newUserData;
+    String accountCreatedMsg;
+    String accountDeletedMsg;
+    String enterAccountInformationWord;
+    String pageTitle;
+    String newUserSignupWord;
+    String firstName;
+    String lastName;
+    String Company;
+    String address1;
+    String address2;
+    String state;
+    String City;
+    String zipcode;
+    String mobileNumber;
+
+
 
     @BeforeClass
     public void prepareData(){
-
-        // I need a json reader to read the json file, then access the keys inside
+        // Read Test Data Files
+        CLs = new JsonFileManager("src/test/resources/TestData/CLs.json");
+        newUserData = new JsonFileManager("src/test/resources/TestData/RegisterNewUser.json");
+        // CLs Data
+        pageTitle = CLs.getTestData("pageTitle");
+        accountCreatedMsg = CLs.getTestData("accountCreatedMsg");
+        accountDeletedMsg = CLs.getTestData("accountDeletedMsg");
+        newUserSignupWord = CLs.getTestData("newUserSignupWord");
+        enterAccountInformationWord = CLs.getTestData("enterAccountInformationWord");
+        // New User Data
+         firstName = newUserData.getTestData("newUserInfo.firstName");
+         lastName = newUserData.getTestData("newUserInfo.lastName");
+         Company = newUserData.getTestData("newUserInfo.Company");
+         address1 = newUserData.getTestData("newUserInfo.address1");
+         address2 = newUserData.getTestData("newUserInfo.address2");
+         state = newUserData.getTestData("newUserInfo.state");
+         City = newUserData.getTestData("newUserInfo.City");
+         zipcode = newUserData.getTestData("newUserInfo.zipcode");
+         mobileNumber = newUserData.getTestData("newUserInfo.mobileNumber");
     }
 
     @Test(description = "TC1: Register User")
     public void registerUser() {
         new HomePage(driver,sa).
-                assertOnPageTitle("Automation Exercise").
+                assertOnPageTitle(pageTitle).
                 clickSignupAndLoginButton().
-                assertOnNewUserSignupWord("New User Signup!").
-                newUserSignUp("Ahmed").
-                assertOnEnterAccountInformationWord("ENTER ACCOUNT INFORMATION").
-                createAccount("Ahmed","Emad","_VOIS","here","There","Cairo","Cairo","123","12345678910").
-                assertOnAccountCreatedWord("ACCOUNT CREATED!").
+                assertOnNewUserSignupWord(newUserSignupWord).
+                newUserSignUp(firstName).
+                assertOnEnterAccountInformationWord(enterAccountInformationWord).
+                createAccount(firstName,lastName,Company,address1,address2,state,City,zipcode,mobileNumber).
+                assertOnAccountCreatedWord(accountCreatedMsg).
                 clickContinue().
-                assertOnLoggedInAsdWord("Ahmed").
+                assertOnLoggedInAsdWord(firstName).
                 clickDeleteAccountButton().
-                assertOnAccountDeleted("ACCOUNT DELETED!");
+                assertOnAccountDeleted(accountDeletedMsg);
         System.out.println("Test 1");
     }
 }

@@ -1,0 +1,9 @@
+  {
+    "pageTitle": "Automation Exercise",
+    "loginToYourAccountWord": "Login to your account",
+    "newUserSignupWord": "New User Signup!",
+    "enterAccountInformationWord": "ENTER ACCOUNT INFORMATION",
+    "loginErrorMsg": "Your email or password is incorrect!",
+    "accountCreatedMsg": "ACCOUNT CREATED!",
+    "accountDeletedMsg": "ACCOUNT DELETED!"
+  }

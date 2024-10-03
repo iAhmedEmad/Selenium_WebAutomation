@@ -1,4 +1,4 @@
-package Features;
+package Base;
 
 import Utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
@@ -7,8 +7,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 
 public class TestConfigurations {
-     WebDriver driver;
-     SoftAssert sa;
+     public WebDriver driver;
+     public SoftAssert sa;
 
 
     @BeforeMethod

@@ -1,10 +1,11 @@
-{
-  "validCredentials": {
-    "username": "testemad1234@gmail.com",
-    "password": "test123"
-  },
-  "invalidCredentials": {
-    "username": "invalid@gmail.com",
-    "password": "test123"
+  {
+    "validCredentials": {
+      "email": "testemad1234@gmail.com",
+      "password": "test123",
+      "username" : "Ahmed"
+    },
+    "invalidCredentials": {
+      "email": "invalid@gmail.com",
+      "password": "test123"
+    }
   }
-}
