@@ -3,4 +3,5 @@ This demo project is to Practice Selenium in Automating Browsers
 
 ### The project implements the following:
 - Modular Design Using Page Object Model Design Pattern (POM)
-- Fluent Design Approach (Full Fluency)
+- Fluent Design Approach (Full Fluency) (Methods chaining)
+- Data Driven Tests Using JSON Files
