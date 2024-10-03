@@ -30,6 +30,7 @@ public class CreateAccountPage {
     private final By dayDropDownMenu = By.xpath("//select[@id='days']");
     private final By daySelected = By.xpath("//select[@id='days']//option[@value='30']");
     private final By monthDropDownMenu = By.xpath("//select[@id='months']");
+    // use select class with dropdown
     private final By monthSelected = By.xpath("//select[@id='months']//option[@value='11']");
     private final By yearDropDownMenu = By.xpath("//select[@id='years']");
     private final By yearSelected = By.xpath("//select[@id='years']//option[@value='1997']");

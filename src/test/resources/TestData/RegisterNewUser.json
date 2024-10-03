@@ -1,0 +1,13 @@
+{
+  "newUserInfo": {
+    "firstName": "Ahmed",
+    "lastName": "Emad",
+    "Company": "_VOIS",
+    "address1": "here",
+    "address2": "There",
+    "state": "Egypt",
+    "City": "Cairo",
+    "zipcode": "123",
+    "mobileNumber" : "12345678910"
+  }
+}
