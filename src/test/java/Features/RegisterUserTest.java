@@ -2,13 +2,14 @@ package Features;
 
 import Base.TestConfigurations;
 import Pages.*;
-import Utils.Listeners.CustomListeners;
+import Utils.Listeners.CustomIRetryAnalyzer;
+import Utils.Listeners.CustomITestListener;
 import Utils.JsonFileManager;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners(CustomListeners.class)
+@Listeners(CustomITestListener.class)
 public class RegisterUserTest extends TestConfigurations {
     JsonFileManager CLs;
     JsonFileManager newUserData;
@@ -52,7 +53,7 @@ public class RegisterUserTest extends TestConfigurations {
          mobileNumber = newUserData.getTestData("newUserInfo.mobileNumber");
     }
 
-    @Test(description = "TC1: Register User")
+    @Test(description = "TC1: Register User", retryAnalyzer = CustomIRetryAnalyzer.class )
     public void registerUser() {
         new HomePage(driver,sa).
                 assertOnPageTitle(pageTitle).

@@ -2,13 +2,14 @@ package Features;
 
 import Base.TestConfigurations;
 import Pages.HomePage;
-import Utils.Listeners.CustomListeners;
+import Utils.Listeners.CustomIRetryAnalyzer;
+import Utils.Listeners.CustomITestListener;
 import Utils.JsonFileManager;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners(CustomListeners.class)
+@Listeners(CustomITestListener.class)
 public class LoginTest extends TestConfigurations {
 
     JsonFileManager loinData;
@@ -41,7 +42,7 @@ public class LoginTest extends TestConfigurations {
         loginErrorMsg = CLs.getTestData("loginErrorMsg");
     }
 
-    @Test(description = "TC2: Login User with correct email and password")
+    @Test(description = "TC2: Login User with correct email and password", retryAnalyzer = CustomIRetryAnalyzer.class)
     public void loginWithCorrectCredentials(){
         new HomePage(driver,sa)
                 .assertOnPageTitle(pageTitle)
@@ -50,7 +51,7 @@ public class LoginTest extends TestConfigurations {
                 .loginWithValidCredintials(validEmail,validPassword)
                 .assertOnLoggedInAsdWord(userName);
     }
-    @Test(description = "TC3: Login User with incorrect email and password")
+    @Test(description = "TC3: Login User with incorrect email and password", retryAnalyzer = CustomIRetryAnalyzer.class)
     public void loginWithInCorrectCredentials(){
         new HomePage(driver,sa)
                 .assertOnPageTitle(pageTitle)
