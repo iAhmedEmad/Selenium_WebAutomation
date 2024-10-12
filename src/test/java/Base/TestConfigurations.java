@@ -16,7 +16,6 @@ public class TestConfigurations {
         driver = DriverFactory.getDriver("Chrome",true);
         sa = new SoftAssert();
         driver.navigate().to("https://automationexercise.com/");
-        System.out.println("before method");
     }
 
 
@@ -24,6 +23,5 @@ public class TestConfigurations {
     public void tearDown() {
         driver.quit();
         sa.assertAll();
-        System.out.println("after method");
     }
 }
