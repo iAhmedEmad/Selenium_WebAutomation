@@ -5,6 +5,7 @@ import Pages.*;
 import Utils.Listeners.CustomIRetryAnalyzer;
 import Utils.Listeners.CustomITestListener;
 import Utils.JsonFileManager;
+import com.aventstack.extentreports.ExtentTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -67,5 +68,11 @@ public class RegisterUserTest extends TestConfigurations {
                 assertOnLoggedInAsdWord(firstName).
                 clickDeleteAccountButton().
                 assertOnAccountDeleted(accountDeletedMsg);
+
+        ExtentTest test = extent.createTest("registerUser Test"); // create a test node in the report
+        test.pass("Register User Test started successfully"); // create a test step node in the report
+        test.info("URL is loaded");
+        test.info("User registration is in progress");
+        test.pass("Registration test failed!");
     }
 }

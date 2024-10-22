@@ -5,6 +5,7 @@ import Pages.HomePage;
 import Utils.Listeners.CustomIRetryAnalyzer;
 import Utils.Listeners.CustomITestListener;
 import Utils.JsonFileManager;
+import com.aventstack.extentreports.ExtentTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -50,7 +51,14 @@ public class LoginTest extends TestConfigurations {
                 .assertOnLoginToYourAccountWord(loginToYourAccountWord)
                 .loginWithValidCredintials(validEmail,validPassword)
                 .assertOnLoggedInAsdWord(userName);
+
+        ExtentTest test = extent.createTest("loginWithCorrectCredentials Test"); // create a test node in the report
+        test.pass("loginWithCorrectCredentials Test started successfully"); // create a test step node in the report
+        test.info("URL is loaded");
+        test.info("Username and password entered");
+        test.pass("Login test passed successfully!");
     }
+
     @Test(description = "TC3: Login User with incorrect email and password", retryAnalyzer = CustomIRetryAnalyzer.class)
     public void loginWithInCorrectCredentials(){
         new HomePage(driver,sa)
@@ -59,5 +67,11 @@ public class LoginTest extends TestConfigurations {
                 .assertOnLoginToYourAccountWord(loginToYourAccountWord)
                 .loginWithInvalidCredintials(invalidEmail,invalidPassword)
                 .assertOnLoginErrorMsg(loginErrorMsg);
+
+        ExtentTest test = extent.createTest("loginWithInCorrectCredentials Test"); // create a test node in the report
+        test.pass("loginWithInCorrectCredentials Test started successfully"); // create a test step node in the report
+        test.info("URL is loaded");
+        test.info("User login is in progress");
+        test.fail("Loin test failed!");
     }
 }
