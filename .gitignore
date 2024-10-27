@@ -1,4 +1,7 @@
 target/
+allure-report/
+allure-results/
+src/test/resources/TestReports/*
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
